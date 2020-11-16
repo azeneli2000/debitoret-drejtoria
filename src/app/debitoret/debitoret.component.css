@@ -1,0 +1,17 @@
+.make-red {
+  color: red;
+}
+.make-blue {
+  color: blue;
+}
+.hidden {
+  display: none;
+}
+.make-green {
+  color: green;
+}
+.search-div {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}

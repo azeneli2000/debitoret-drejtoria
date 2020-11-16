@@ -1,0 +1,124 @@
+<div class="search-div">
+  <mat-card>
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input
+        matInput
+        [(ngModel)]="searchKey"
+        placeholder="Kerko.."
+        autocomplete="off"
+        (keyup)="applyFilter()"
+      />
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        *ngIf="searchKey"
+        (click)="onSearchClear()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card>
+</div>
+<br />
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="listData" matSort>
+    <ng-container matColumnDef="index">
+      <mat-header-cell *matHeaderCellDef> Nr </mat-header-cell>
+      <mat-cell *matCellDef="let i = index">{{ i + 1 }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Emri">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Emri</mat-header-cell>
+      <mat-cell
+        *matCellDef="let element; let row"
+        [ngClass]="{
+          'make-red': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 2,
+          'make-blue': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 1,
+          'make-green': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 0
+        }"
+        >{{ element.Emri }}</mat-cell
+      >
+    </ng-container>
+    <ng-container matColumnDef="Atesia">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Atesia</mat-header-cell
+      >
+      <mat-cell
+        *matCellDef="let element; let row"
+        [ngClass]="{
+          'make-red': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 2,
+          'make-blue': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 1,
+          'make-green': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 0
+        }"
+        >{{ element.Atesia }}</mat-cell
+      >
+    </ng-container>
+    <ng-container matColumnDef="Mbiemri">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Mbiemri</mat-header-cell
+      >
+      <mat-cell
+        *matCellDef="let element; let row"
+        [ngClass]="{
+          'make-red': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 2,
+          'make-blue': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 1,
+          'make-green': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 0
+        }"
+        >{{ element.Mbiemri }}</mat-cell
+      >
+    </ng-container>
+    <ng-container matColumnDef="Klasa">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Klasa</mat-header-cell>
+      <mat-cell
+        *matCellDef="let element; let row"
+        [ngClass]="{
+          'make-red': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 2,
+          'make-blue': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 1,
+          'make-green': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 0
+        }"
+        >{{ element.Klasa }}</mat-cell
+      >
+    </ng-container>
+
+    <ng-container matColumnDef="Indeksi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Indeksi</mat-header-cell
+      >
+      <mat-cell
+        *matCellDef="let element; let row"
+        [ngClass]="{
+          'make-red': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 2,
+          'make-blue': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 1,
+          'make-green': gjejVonesaRe(row.PagesaShkolla, row.PaguarShkolla) == 0
+        }"
+        >{{ element.Indeksi }}</mat-cell
+      >
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [ngClass]="{ hidden: checked && row.PagesaTransporti == 0 }"
+    ></mat-row>
+  </mat-table>
+
+  <mat-card
+    *ngIf="isLoading"
+    style="display: flex; justify-content: center; align-items: center"
+  >
+    <mat-progress-spinner color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+  </mat-card>
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      matTooltip="Print Mesuesit"
+      (click)="printVonesa()"
+    >
+      <mat-icon>print</mat-icon></button
+    >&nbsp;
+  </div>
+</div>
