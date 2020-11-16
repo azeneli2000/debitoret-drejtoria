@@ -20,6 +20,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MesuesitComponent } from './mesuesit/mesuesit.component';
+import { MesuesiLendaComponent } from './mesuesi-lenda/mesuesi-lenda.component';
 
 
 
@@ -31,7 +32,8 @@ import { MesuesitComponent } from './mesuesit/mesuesit.component';
     AppComponent,
     DebitoretComponent,
     ToolbarComponent,
-    MesuesitComponent
+    MesuesitComponent,
+    MesuesiLendaComponent
   ],
   imports: [
     BrowserModule,
